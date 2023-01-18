@@ -16,7 +16,7 @@ const colorList = [
 let colorContainer = document.getElementById("colorContainer");
 let arr = [];
 
-const handleChangeColor = (color) => {
+const handleChangeColor = (event, color) => {
   let house = document.getElementById("house");
 
   house.className = "";
@@ -24,6 +24,13 @@ const handleChangeColor = (color) => {
 
   const colorClassList = house.classList;
   colorClassList.add(color);
+
+  const activeElenments= document.querySelector(".active");
+  if(activeElenments!=null){
+    activeElenments.classList.remove("active");
+
+  }
+  event.target.classList.add("active");
 };
 
 for (let i = 0; i < colorList.length; i++) {
@@ -34,7 +41,7 @@ for (let i = 0; i < colorList.length; i++) {
   button.addEventListener(
     "click",
 
-    () => handleChangeColor(colorList[i]),
+    (event) => handleChangeColor(event,colorList[i]),
     false
   );
 
